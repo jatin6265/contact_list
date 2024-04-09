@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width= , initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link rel="stylesheet" href="/css/home.css" />
+    <title><%= title %></title>
+  </head>
+
+  <body>
+    <div id="container">
+      <h1 id="page-heading">
+        <span class="material-symbols-outlined"> person_book </span> My Contact
+        List
+      </h1>
+      <div>
+        <ul>
+          <% if (contact_list && contact_list.length > 0) { %> <%for(let i of
+          contact_list){%>
+          <li id="contact">
+            <div class="deatail">
+              <p><%= i.name%></p>
+              <p><%= i.phone%></p>
+            </div>
+            <div class="delete">
+              <!-- <a href="/delete-contact/?name=<%=i.name %>&phone=<%=i.phone%>"
+                ><span class="material-symbols-outlined"> delete </span></a
+              > -->
+              <a href="/delete-contact/?id=<%=i.id %>"
+                ><span class="material-symbols-outlined"> delete </span></a
+              >
+            </div>
+          </li>
+          <%}%> <% } else{ %>
+          <p id="no-contact"><%= add %></p>
+          <% } %>
+        </ul>
+      </div>
+      <form action="/create-conatct" method="post">
+        <input type="text" name="name" placeholder="Enter Name" required />
+        <input type="number" name="phone" placeholder="Enter Phone" required />
+        <button type="submit">Add</button>
+      </form>
+    </div>
+    <script type="text/javascript" src="/js/home.js"></script>
+  </body>
+</html>
